@@ -21,7 +21,6 @@ El procedimiento esta escrito para Ubuntu aunque la idea aplica para todos las d
 
 <pre>
   sudo apt-get install apache2
-
 </pre>
 
 Para detener, iniciar, reinciar el servidor apache:
@@ -30,7 +29,6 @@ Para detener, iniciar, reinciar el servidor apache:
   sudo /etc/init.d/apache2 stop
   sudo /etc/init.d/apache2 start
   sudo /etc/init.d/apache2 restart
-
 </pre>
 
 Una vez que este instalado apache ve al explorador e ingresa localhost en la barra de direcciones y da enter.
@@ -41,7 +39,6 @@ Debes de ver algo como ** It works !!! ** o una pagina que confirme que apache e
 
 <pre>
   sudo apt-get install libapache2-mod-proxy-html
-
 </pre>
 
 Luego hay que editar la configuracion del apache para que utilize el modulo que acabamos de instalar.
@@ -53,18 +50,10 @@ ssh.
 
 <pre>
   sudo gedit /etc/apache2/ports
-
 </pre>
 
 Y agrego listen 8888 y comento el 443, el arhivo me queda asi:
 
-```xml
-
-<myxml>
-   <someelement>
-</someelement></myxml>
-
-```
 
 <pre>
     # If you just change the port or add more ports here, you will likely also
@@ -77,26 +66,24 @@ Y agrego listen 8888 y comento el 443, el arhivo me queda asi:
     NameVirtualHost *:80
     Listen 80
     Listen 8888
-    <ifmodule mod_ssl.c="">
+    &lt;ifmodule mod_ssl.c="">
         # If you add NameVirtualHost *:443 here, you will also have to change
         # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
         # to &lt;VirtualHost *:443&gt;
         # Server Name Indication for SSL named virtual hosts is currently not
         # supported by MSIE on Windows XP.
         # Listen 443
-    </ifmodule>
+    &lt;/ifmodule>
 
-    <ifmodule mod_gnutls.c="">
+    &lt;ifmodule mod_gnutls.c="">
        #  Listen 443
-    </ifmodule>
-
+    &lt;/ifmodule>
 </pre>
 
 luego creamos un nuevo documento vacio en la siguiete ruta con el nombre "proxy"
 
 <pre>
    /etc/apache2/sites-available
-
 </pre>
 
 Y ponemos lo siguiente
@@ -117,17 +104,17 @@ Y ponemos lo siguiente
       #10000 = Webmin
 
       DocumentRoot /var/www/
-      <directory>
+      &lt;directory>
               Options FollowSymLinks
               AllowOverride None
 
-      ErrorLog /var/log/apache2/proxy-error.log
-      TransferLog /var/log/apache2/proxy-transfer.log
-      # Possible values include: debug, info, notice, warn, error, crit,
-      # alert, emerg.
-      LogLevel debug
+            ErrorLog /var/log/apache2/proxy-error.log
+            TransferLog /var/log/apache2/proxy-transfer.log
+            # Possible values include: debug, info, notice, warn, error, crit,
+            # alert, emerg.
+            LogLevel debug
 
-  </directory>
+      &lt;/directory>
 </pre>
 
 Con lo que le estamos creando un nuevo sitio proxy que va a forwadear
@@ -138,13 +125,12 @@ Configuramos el mod_proxy en el siguiente archivo:
 
 <pre>
     sudo gedit /etc/apache2/mods-available/proxy.conf
-
 </pre>
 
 Que queda de esta forma
 
 <pre>
-<ifmodule mod_proxy.c="">
+&lt;ifmodule mod_proxy.c="">
         #turning ProxyRequests on and allowing proxying from all may allow
         #spammers to use your proxy to send email.
 
@@ -162,9 +148,7 @@ Que queda de esta forma
         # Set to one of: Off | On | Full | Block
 
         ProxyVia On
-</ifmodule>
-
-
+&lt;/ifmodule>
 </pre>
 
 Con lo que configuramos que solo se pueda usar el proxy desde el localhost.
@@ -172,21 +156,18 @@ Activamos el mod_proxy con esta linea.
 
 <pre>
 sudo a2enmod proxy proxy_connect proxy_html proxy_http proxy_ftp
-
 </pre>
 
 Activamos el sitio proxy
 
 <pre>
 sudo a2ensite proxy
-
 </pre>
 
 Y reinciamos el rervidor:
 
 <pre>
  sudo /etc/init.d/apache2 restart
-
 </pre>
 
 Ya tenemos el servidor web listo.
@@ -198,25 +179,21 @@ Para deshabilitar el sitio proxy
 
 <pre>
 sudo a2dissite proxy
-
 </pre>
 
 para deshabilitar el mod_proxy:
 
 <pre>
 sudo a2dismod  proxy_connect proxy_html  proxy_ftp proxy
-
 </pre>
 
 Si se deshabilita el mod_proxy es necesario deshabilitar el  site
 proxy, por que este depende del mod_proxy, y el apache no arrancarria.
 
 Para averiguar si funciona puedes hacer un telnet
-&lt;pre name="code" class="ruby"&gt;
 
 <pre>
 telnet localhost 8888
-
 </pre>
 
 Si no responde con codigo de error es por que esta bien, si ves simbolos raros esta bien.
@@ -225,7 +202,6 @@ Si no responde con codigo de error es por que esta bien, si ves simbolos raros e
 
 <pre>
 sudo apt-get install openssh-server
-
 </pre>
 
 Como es un hecho que este bloqueado el puerto 22 que se utiliza por
@@ -236,35 +212,30 @@ Para hacer esto hay que modificar el siguiente archivo
 
 <pre>
 sudo gedit /etc/ssh/sshd_config
-
 </pre>
 
 Cambia esta linea
 
 <pre>
   Port 22
-
 </pre>
 
 por
 
 <pre>
   Port 443
-
 </pre>
 
 Ahora reinicia el servidor ssh.
 
 <pre>
 sudo /etc/init.d/ssh restart
-
 </pre>
 
 Prueba conectarte a tu maquina
 
 <pre>
 ssh 'user'@localhost -p 443
-
 </pre>
 
 ## 4. Configurar DNS dinamico
@@ -277,7 +248,6 @@ Para instalarlo dirigite a la siguiente pagina no-ip.org y create una
 
 <pre>
 sudo apt-get install no-ip
-
 </pre>
 
 Sigue la instrucciones, los parametros por default esta bien.
@@ -286,14 +256,12 @@ Ahora comprueba si esta funcionando correctamente.
 
 <pre>
 sudo noip2 -S
-
 </pre>
 
 Si el cliente de no-ip no esta corriendo utiliza.
 
 <pre>
 sudo noip2
-
 </pre>
 
 ## 5. Configurar tu maquina local
@@ -302,7 +270,6 @@ Ahora configura la maquina desde donde te vas a conectar si utilizas linux.
 
 <pre>
  ssh -L 8888:localhost:8888 user@server.at.home -p 443
-
 </pre>
 
 Con Windows utiliza [putty](http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html) o [extra-putty](http://www.extraputty.com/).
