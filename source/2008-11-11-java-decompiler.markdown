@@ -10,7 +10,7 @@ comments: []
 Un decompilador es una herramienta muy util cuando necesitas modificar una clase y no cuentas con el codigo fuente.
 
 
-<h6>Decompiladores que conosco:</h6>
+<h6>Decompiladores que conozco:</h6>
 
 * <a href="http://varaneckas.com/jad/" target="_blank">JAD</a>
 

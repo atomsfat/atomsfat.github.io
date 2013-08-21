@@ -2,13 +2,13 @@
 pageable: true
 per_page: 12
 ---
-<h1>Articles tagged '<%= tagname %>'</h1>
+<h1>Articulos etiquetados '<%= tagname %>'</h1>
 
 <% if paginate %>
-  <p>Page <%= page_number %> of <%= num_pages %></p>
+  <p>Pagina <%= page_number %> de <%= num_pages %></p>
 
   <% if prev_page %>
-    <p><%= link_to 'Previous page', prev_page %></p>
+    <p><%= link_to 'Pagina previa', prev_page %></p>
   <% end %>
 <% end %>
 
@@ -20,6 +20,6 @@ per_page: 12
 
 <% if paginate %>
   <% if next_page %>
-    <p><%= link_to 'Next page', next_page %></p>
+    <p><%= link_to 'Pagina siguiente', next_page %></p>
   <% end %>
 <% end %>

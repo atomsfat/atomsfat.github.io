@@ -274,9 +274,12 @@ Ahora configura la maquina desde donde te vas a conectar si utilizas linux.
 
 Con Windows utiliza [putty](http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html) o [extra-putty](http://www.extraputty.com/).
 
-[![](localhost_files/putty1-300x289.html "putty1")](http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty1.png)
+Configura putty de esta forma:
 
-[![](localhost_files/putty2-300x288.html "putty2")](http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty2.png)
+![putty1](/assets/img/post/2008-12-26-putty1.png "Putty 1 configuracion")
+
+![putty1](/assets/img/post/2008-12-26-putty2.png "Putty 2 configuracion")
+
 
 Necesitas configurar tu explorador para que use localhost:8080 como
 proxy, para todos los protocolos , si estas utilizando windows no
