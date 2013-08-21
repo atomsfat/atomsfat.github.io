@@ -10,7 +10,7 @@
 
 
     <!-- Le styles -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;
@@ -29,7 +29,7 @@
         }
       }
     </style>
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -58,23 +58,23 @@
           <ul class="nav nav-list">
             <li class="nav-header">Articulos recientes</li>
             
-              <li><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a> <span>Aug 21</span></li>
+              <li><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a></li>
             
-              <li><a href="/2008/12/26/apache-webproxy-y-tunnelling.html">Apache WebProxy, y tunnelling</a> <span>Dec 26</span></li>
+              <li><a href="/2008/12/26/apache-webproxy-y-tunnelling.html">Apache WebProxy, y tunnelling</a></li>
             
-              <li><a href="/2008/11/11/java-decompiler.html">Java Decompiler</a> <span>Nov 11</span></li>
+              <li><a href="/2008/11/11/java-decompiler.html">Java Decompiler</a></li>
             
-              <li><a href="/2008/11/11/java-obfuscator.html">Java Obfuscator</a> <span>Nov 11</span></li>
+              <li><a href="/2008/11/11/java-obfuscator.html">Java Obfuscator</a></li>
             
             <li class="nav-header">Etiquetas</li>
             
-              <li><a href="/tags/groovy.html">Groovy</a> (1)</a></li>
+              <li><a href="/tags/groovy.html">Groovy (1)</a> </a></li>
           
-              <li><a href="/tags/amazon.html">Amazon</a> (1)</a></li>
+              <li><a href="/tags/amazon.html">Amazon (1)</a> </a></li>
           
-              <li><a href="/tags/s3.html">S3</a> (1)</a></li>
+              <li><a href="/tags/s3.html">S3 (1)</a> </a></li>
           
-              <li><a href="/tags/java.html">Java</a> (2)</a></li>
+              <li><a href="/tags/java.html">Java (2)</a> </a></li>
           
           <li class="nav-header">Por año</li>
           
@@ -102,7 +102,6 @@ libres, anonimamente y sin restriciones.</p>
 
 <pre>
   sudo apt-get install apache2
-
 </pre>
 
 <p>Para detener, iniciar, reinciar el servidor apache:</p>
@@ -111,7 +110,6 @@ libres, anonimamente y sin restriciones.</p>
   sudo /etc/init.d/apache2 stop
   sudo /etc/init.d/apache2 start
   sudo /etc/init.d/apache2 restart
-
 </pre>
 
 <p>Una vez que este instalado apache ve al explorador e ingresa localhost en la barra de direcciones y da enter.
@@ -122,7 +120,6 @@ Debes de ver algo como ** It works !!! ** o una pagina que confirme que apache e
 
 <pre>
   sudo apt-get install libapache2-mod-proxy-html
-
 </pre>
 
 <p>Luego hay que editar la configuracion del apache para que utilize el modulo que acabamos de instalar.</p>
@@ -134,18 +131,9 @@ ssh.</p>
 
 <pre>
   sudo gedit /etc/apache2/ports
-
 </pre>
 
 <p>Y agrego listen 8888 y comento el 443, el arhivo me queda asi:</p>
-
-<p>```xml</p>
-
-<myxml>
-   <someelement>
-</someelement></myxml>
-
-<p>```</p>
 
 <pre>
     # If you just change the port or add more ports here, you will likely also
@@ -158,26 +146,24 @@ ssh.</p>
     NameVirtualHost *:80
     Listen 80
     Listen 8888
-    <ifmodule mod_ssl.c="">
+    &lt;ifmodule mod_ssl.c=""&gt;
         # If you add NameVirtualHost *:443 here, you will also have to change
         # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
         # to &lt;VirtualHost *:443&gt;
         # Server Name Indication for SSL named virtual hosts is currently not
         # supported by MSIE on Windows XP.
         # Listen 443
-    </ifmodule>
+    &lt;/ifmodule&gt;
 
-    <ifmodule mod_gnutls.c="">
+    &lt;ifmodule mod_gnutls.c=""&gt;
        #  Listen 443
-    </ifmodule>
-
+    &lt;/ifmodule&gt;
 </pre>
 
 <p>luego creamos un nuevo documento vacio en la siguiete ruta con el nombre "proxy"</p>
 
 <pre>
    /etc/apache2/sites-available
-
 </pre>
 
 <p>Y ponemos lo siguiente</p>
@@ -198,17 +184,17 @@ ssh.</p>
       #10000 = Webmin
 
       DocumentRoot /var/www/
-      <directory>
+      &lt;directory&gt;
               Options FollowSymLinks
               AllowOverride None
 
-      ErrorLog /var/log/apache2/proxy-error.log
-      TransferLog /var/log/apache2/proxy-transfer.log
-      # Possible values include: debug, info, notice, warn, error, crit,
-      # alert, emerg.
-      LogLevel debug
+            ErrorLog /var/log/apache2/proxy-error.log
+            TransferLog /var/log/apache2/proxy-transfer.log
+            # Possible values include: debug, info, notice, warn, error, crit,
+            # alert, emerg.
+            LogLevel debug
 
-  </directory>
+      &lt;/directory&gt;
 </pre>
 
 <p>Con lo que le estamos creando un nuevo sitio proxy que va a forwadear
@@ -219,13 +205,12 @@ igual al puerto que esta escuchando apache.</p>
 
 <pre>
     sudo gedit /etc/apache2/mods-available/proxy.conf
-
 </pre>
 
 <p>Que queda de esta forma</p>
 
 <pre>
-<ifmodule mod_proxy.c="">
+&lt;ifmodule mod_proxy.c=""&gt;
         #turning ProxyRequests on and allowing proxying from all may allow
         #spammers to use your proxy to send email.
 
@@ -243,9 +228,7 @@ igual al puerto que esta escuchando apache.</p>
         # Set to one of: Off | On | Full | Block
 
         ProxyVia On
-</ifmodule>
-
-
+&lt;/ifmodule&gt;
 </pre>
 
 <p>Con lo que configuramos que solo se pueda usar el proxy desde el localhost.
@@ -253,21 +236,18 @@ Activamos el mod_proxy con esta linea.</p>
 
 <pre>
 sudo a2enmod proxy proxy_connect proxy_html proxy_http proxy_ftp
-
 </pre>
 
 <p>Activamos el sitio proxy</p>
 
 <pre>
 sudo a2ensite proxy
-
 </pre>
 
 <p>Y reinciamos el rervidor:</p>
 
 <pre>
  sudo /etc/init.d/apache2 restart
-
 </pre>
 
 <p>Ya tenemos el servidor web listo.</p>
@@ -279,25 +259,21 @@ Para deshabilitar el sitio proxy</p>
 
 <pre>
 sudo a2dissite proxy
-
 </pre>
 
 <p>para deshabilitar el mod_proxy:</p>
 
 <pre>
 sudo a2dismod  proxy_connect proxy_html  proxy_ftp proxy
-
 </pre>
 
 <p>Si se deshabilita el mod_proxy es necesario deshabilitar el  site
 proxy, por que este depende del mod_proxy, y el apache no arrancarria.</p>
 
-<p>Para averiguar si funciona puedes hacer un telnet
-&lt;pre name="code" class="ruby"&gt;</p>
+<p>Para averiguar si funciona puedes hacer un telnet</p>
 
 <pre>
 telnet localhost 8888
-
 </pre>
 
 <p>Si no responde con codigo de error es por que esta bien, si ves simbolos raros esta bien.</p>
@@ -306,7 +282,6 @@ telnet localhost 8888
 
 <pre>
 sudo apt-get install openssh-server
-
 </pre>
 
 <p>Como es un hecho que este bloqueado el puerto 22 que se utiliza por
@@ -317,35 +292,30 @@ puerto 443 usado generalmente para https.</p>
 
 <pre>
 sudo gedit /etc/ssh/sshd_config
-
 </pre>
 
 <p>Cambia esta linea</p>
 
 <pre>
   Port 22
-
 </pre>
 
 <p>por</p>
 
 <pre>
   Port 443
-
 </pre>
 
 <p>Ahora reinicia el servidor ssh.</p>
 
 <pre>
 sudo /etc/init.d/ssh restart
-
 </pre>
 
 <p>Prueba conectarte a tu maquina</p>
 
 <pre>
 ssh 'user'@localhost -p 443
-
 </pre>
 
 <h2 id="configurar-dns-dinamico">4. Configurar DNS dinamico</h2>
@@ -358,7 +328,6 @@ ssh 'user'@localhost -p 443
 
 <pre>
 sudo apt-get install no-ip
-
 </pre>
 
 <p>Sigue la instrucciones, los parametros por default esta bien.</p>
@@ -367,14 +336,12 @@ sudo apt-get install no-ip
 
 <pre>
 sudo noip2 -S
-
 </pre>
 
 <p>Si el cliente de no-ip no esta corriendo utiliza.</p>
 
 <pre>
 sudo noip2
-
 </pre>
 
 <h2 id="configurar-tu-maquina-local">5. Configurar tu maquina local</h2>
@@ -383,7 +350,6 @@ sudo noip2
 
 <pre>
  ssh -L 8888:localhost:8888 user@server.at.home -p 443
-
 </pre>
 
 <p>Con Windows utiliza <a href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html">putty</a> o <a href="http://www.extraputty.com/">extra-putty</a>.</p>
@@ -413,4 +379,17 @@ opera, por que la configuracion del proxy es mas facil.</p>
     </div><!--/.fluid-container-->
 
   </body>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6535072-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </html>
