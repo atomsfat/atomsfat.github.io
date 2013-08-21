@@ -20,7 +20,6 @@
     </author>
     <content type="html">&lt;h4 id="hacer-un-backup-de-una-base-de-datos-a-amazon-s3"&gt;Hacer un backup de una base de datos a Amazon S3&lt;/h4&gt;
 
-&lt;h4 id="lista-de-pasos"&gt;Lista de pasos:&lt;/h4&gt;
 &lt;ol&gt;
   &lt;li&gt;Realizar un dump de la base&lt;/li&gt;
   &lt;li&gt;Comprimir&lt;/li&gt;
