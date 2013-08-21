@@ -4,7 +4,7 @@ task :build do
   sh "middleman build --clean"
 end
 
-task :publish do
+task :deploy do
   sh "middleman build --clean"
-  sh "middleman deploy --clean"
+  sh "middleman deploy"
 end
