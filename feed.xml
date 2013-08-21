@@ -307,9 +307,11 @@ sudo noip2
 
 &lt;p&gt;Con Windows utiliza &lt;a href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html"&gt;putty&lt;/a&gt; o &lt;a href="http://www.extraputty.com/"&gt;extra-putty&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty1.png"&gt;&lt;img src="localhost_files/putty1-300x289.html" alt="" title="putty1" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Configura putty de esta forma:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty2.png"&gt;&lt;img src="localhost_files/putty2-300x288.html" alt="" title="putty2" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/assets/img/post/2008-12-26-putty1.png" alt="putty1" title="Putty 1 configuracion" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/assets/img/post/2008-12-26-putty2.png" alt="putty1" title="Putty 2 configuracion" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Necesitas configurar tu explorador para que use localhost:8080 como
 proxy, para todos los protocolos , si estas utilizando windows no
@@ -332,7 +334,7 @@ opera, por que la configuracion del proxy es mas facil.&lt;/p&gt;
     </author>
     <content type="html">&lt;p&gt;Un decompilador es una herramienta muy util cuando necesitas modificar una clase y no cuentas con el codigo fuente.&lt;/p&gt;
 
-&lt;h6&gt;Decompiladores que conosco:&lt;/h6&gt;
+&lt;h6&gt;Decompiladores que conozco:&lt;/h6&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
