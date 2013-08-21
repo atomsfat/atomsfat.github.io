@@ -90,25 +90,30 @@
     </div><!--/.well -->
   </div><!--/span-->
   <div class="span9">
-      <h1>Archivo de
-  
-    2013
-  
-</h1>
+      <h4 id="hacer-un-backup-de-una-base-de-datos-a-amazon-s3">Hacer un backup de una base de datos a Amazon S3</h4>
 
-  <p>Pagina 1 de 1</p>
+<h4 id="lista-de-pasos">Lista de pasos:</h4>
+<ol>
+  <li>Realizar un dump de la base</li>
+  <li>Comprimir</li>
+  <li>Subir a <a href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html" title="title">S3</a></li>
+</ol>
 
-  
+<h4 id="dumping-compressing">Dumping, compressing</h4>
+<script src="https://gist.github.com/atomsfat/6218618.js"></script>
 
-<ul>
-  
-    <li><a href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html">Hacer un backup de mysql a Amazon S3</a> <span>Aug 21</span></li>
-  
-    <li><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a> <span>Aug 21</span></li>
-  
-</ul>
+<h4 id="uploading">Uploading</h4>
 
-  
+<p>Revisa link del paso 3.</p>
+
+<p>Agrega esta linea al script anterior</p>
+<pre>
+  <code>
+    groovy s3_up.groovy "bucket_name" dump-$name.bz2
+  </code>
+</pre>
+
+<p>P.D Revisa las rutas relativas, si lo ejecutas en un cron, el contexto(enviroment) es diferente, en este ejemplo la base de datos no pide password.</p>
 
   </div>
 </div>

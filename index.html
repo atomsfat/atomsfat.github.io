@@ -58,6 +58,8 @@
           <ul class="nav nav-list">
             <li class="nav-header">Articulos recientes</li>
             
+              <li><a href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html">Hacer un backup de mysql a Amazon S3</a></li>
+            
               <li><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a></li>
             
               <li><a href="/2008/12/26/apache-webproxy-y-tunnelling.html">Apache WebProxy, y tunnelling</a></li>
@@ -68,17 +70,19 @@
             
             <li class="nav-header">Etiquetas</li>
             
-              <li><a href="/tags/groovy.html">Groovy (1)</a> </a></li>
+              <li><a href="/tags/groovy.html">Groovy (2)</a> </a></li>
           
-              <li><a href="/tags/amazon.html">Amazon (1)</a> </a></li>
+              <li><a href="/tags/amazon.html">Amazon (2)</a> </a></li>
           
-              <li><a href="/tags/s3.html">S3 (1)</a> </a></li>
+              <li><a href="/tags/s3.html">S3 (2)</a> </a></li>
           
               <li><a href="/tags/java.html">Java (2)</a> </a></li>
           
+              <li><a href="/tags/mysql.html">MySql (1)</a> </a></li>
+          
           <li class="nav-header">Por año</li>
           
-            <li><a href="/2013.html">2013 (1)</a> </a></li>
+            <li><a href="/2013.html">2013 (2)</a> </a></li>
         
             <li><a href="/2008.html">2008 (3)</a> </a></li>
         
@@ -87,6 +91,38 @@
   </div><!--/span-->
   <div class="span9">
         <div class="row-fluid">
+  <h2><a href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html">Hacer un backup de mysql a Amazon S3</a>
+  </h2><span>Aug 21, 2013</span>
+  <!-- use article.summary(250) if you have Nokogiri available to show just
+       the first 250 characters -->
+  <h4 id="hacer-un-backup-de-una-base-de-datos-a-amazon-s3">Hacer un backup de una base de datos a Amazon S3</h4>
+
+<h4 id="lista-de-pasos">Lista de pasos:</h4>
+<ol>
+  <li>Realizar un dump de la base</li>
+  <li>Comprimir</li>
+  <li>Subir a <a href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html" title="title">S3</a></li>
+</ol>
+
+<h4 id="dumping-compressing">Dumping, compressing</h4>
+<script src="https://gist.github.com/atomsfat/6218618.js"></script>
+
+<h4 id="uploading">Uploading</h4>
+
+<p>Revisa link del paso 3.</p>
+
+<p>Agrega esta linea al script anterior</p>
+<pre>
+  <code>
+    groovy s3_up.groovy "bucket_name" dump-$name.bz2
+  </code>
+</pre>
+
+<p>P.D Revisa las rutas relativas, si lo ejecutas en un cron, el contexto(enviroment) es diferente, en este ejemplo la base de datos no pide password.</p>
+
+  </div><!--/row-->
+<hr>
+  <div class="row-fluid">
   <h2><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a>
   </h2><span>Aug 21, 2013</span>
   <!-- use article.summary(250) if you have Nokogiri available to show just
@@ -447,7 +483,7 @@ opera, por que la configuracion del proxy es mas facil.</p>
 <hr>
 
 <footer>
-  <p>&copy; Tomás Salazar 2013</p>
+  <p>&copy; Tomás Salazar Leal 2013</p>
 </footer>
 
     </div><!--/.fluid-container-->
