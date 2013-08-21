@@ -5,20 +5,400 @@
   <id>http://blog.url.com/</id>
   <link href="http://blog.url.com/"/>
   <link href="http://blog.url.com/feed.xml" rel="self"/>
-  <updated>2012-01-01T00:00:00Z</updated>
+  <updated>2013-08-21T14:43:00Z</updated>
   <author>
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>Example Article</title>
-    <link rel="alternate" href="/2012/01/01/example-article.html"/>
-    <id>/2012/01/01/example-article.html</id>
-    <published>2012-01-01T00:00:00Z</published>
-    <updated>2012-01-01T00:00:00Z</updated>
+    <title>Subir archivos a Amazon S3 con Groovy</title>
+    <link rel="alternate" href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html"/>
+    <id>/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html</id>
+    <published>2013-08-21T14:43:00Z</published>
+    <updated>2013-08-21T14:43:00Z</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;This is an example article. You probably want to delete it and write your own articles!&lt;/p&gt;
+    <content type="html">&lt;p&gt;Subir archivos a amazon S3, un script basado en uno de &lt;a href="http://blog.thomnichols.org/2009/10/upload-to-s3-with-groovy" title="title"&gt;Thom Nichols&lt;/a&gt;  y actualizado con una version mas reciente de &lt;a href="http://jets3t.s3.amazonaws.com/downloads.html" title="title"&gt;JetS3t library&lt;/a&gt;.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Crear bucket en S3 https://console.aws.amazon.com/s3/&lt;/li&gt;
+  &lt;li&gt;Crear grupo y usuario en iam https://console.aws.amazon.com/iam/, verificar que la opcion de generar acces Key este selecionado.&lt;/li&gt;
+  &lt;li&gt;Remplazar accessKey y secretKey en el script.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;script src="https://gist.github.com/atomsfat/6273637.js"&gt;&lt;/script&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Apache WebProxy, y tunnelling</title>
+    <link rel="alternate" href="/2008/12/26/apache-webproxy-y-tunnelling.html"/>
+    <id>/2008/12/26/apache-webproxy-y-tunnelling.html</id>
+    <published>2008-12-26T15:46:00Z</published>
+    <updated>2008-12-26T15:46:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Los adminstradores de red siempre ponen restricciones sobre la
+paginas que podemos ver desde la escuela o en el trabajo,  tambien
+puenden monitorear las paginas que visitamos, una solucion es montar un
+servidor proxy en nuestra casa y conectarnos a el para poder navegar
+libres, anonimamente y sin restriciones.&lt;/p&gt;
+
+&lt;p&gt;La idea la he sacado de este sitio.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://daniel.haxx.se/docs/sshproxy.html"&gt;http://daniel.haxx.se/docs/sshproxy.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;El procedimiento esta escrito para Ubuntu aunque la idea aplica para todos las distribuciones linux.&lt;/p&gt;
+
+&lt;h2 id="primero-necesitaremos-instalar-apache"&gt;1. Primero necesitaremos instalar apache.&lt;/h2&gt;
+
+&lt;pre&gt;
+  sudo apt-get install apache2
+
+&lt;/pre&gt;
+
+&lt;p&gt;Para detener, iniciar, reinciar el servidor apache:&lt;/p&gt;
+
+&lt;pre&gt;
+  sudo /etc/init.d/apache2 stop
+  sudo /etc/init.d/apache2 start
+  sudo /etc/init.d/apache2 restart
+
+&lt;/pre&gt;
+
+&lt;p&gt;Una vez que este instalado apache ve al explorador e ingresa localhost en la barra de direcciones y da enter.
+Debes de ver algo como ** It works !!! ** o una pagina que confirme que apache esta funcionando.
+&lt;img src="localhost_files/apache-runnig-300x188.html" alt="" title="apache-runnig" /&gt;&lt;/p&gt;
+
+&lt;h2 id="instalar-el-modulo-proxy-para-apache"&gt;2. Instalar el modulo proxy para apache.&lt;/h2&gt;
+
+&lt;pre&gt;
+  sudo apt-get install libapache2-mod-proxy-html
+
+&lt;/pre&gt;
+
+&lt;p&gt;Luego hay que editar la configuracion del apache para que utilize el modulo que acabamos de instalar.&lt;/p&gt;
+
+&lt;p&gt;En mi caso voy a utilizar el puerto 8888 para proxear por lo que
+tengo que decirle al apache que escuche en este puerto, y deshabilitar
+las escuchas al puerto 443, por que este puerto lo voy a usar para el
+ssh.&lt;/p&gt;
+
+&lt;pre&gt;
+  sudo gedit /etc/apache2/ports
+
+&lt;/pre&gt;
+
+&lt;p&gt;Y agrego listen 8888 y comento el 443, el arhivo me queda asi:&lt;/p&gt;
+
+&lt;p&gt;```xml&lt;/p&gt;
+
+&lt;myxml&gt;
+   &lt;someelement&gt;
+&lt;/someelement&gt;&lt;/myxml&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;pre&gt;
+    # If you just change the port or add more ports here, you will likely also
+    # have to change the VirtualHost statement in
+    # /etc/apache2/sites-enabled/000-default
+    # This is also true if you have upgraded from before 2.2.9-3 (i.e. from
+    # Debian etch). See /usr/share/doc/apache2.2-common/NEWS.Debian.gz and
+    # README.Debian.gz
+
+    NameVirtualHost *:80
+    Listen 80
+    Listen 8888
+    &lt;ifmodule mod_ssl.c=""&gt;
+        # If you add NameVirtualHost *:443 here, you will also have to change
+        # the VirtualHost statement in /etc/apache2/sites-available/default-ssl
+        # to &amp;lt;VirtualHost *:443&amp;gt;
+        # Server Name Indication for SSL named virtual hosts is currently not
+        # supported by MSIE on Windows XP.
+        # Listen 443
+    &lt;/ifmodule&gt;
+
+    &lt;ifmodule mod_gnutls.c=""&gt;
+       #  Listen 443
+    &lt;/ifmodule&gt;
+
+&lt;/pre&gt;
+
+&lt;p&gt;luego creamos un nuevo documento vacio en la siguiete ruta con el nombre "proxy"&lt;/p&gt;
+
+&lt;pre&gt;
+   /etc/apache2/sites-available
+
+&lt;/pre&gt;
+
+&lt;p&gt;Y ponemos lo siguiente&lt;/p&gt;
+
+&lt;pre&gt;
+    &amp;lt;virtualhost *:8888&amp;gt;
+      ServerAdmin webmaster@localhost
+
+      ProxyRequests On
+      ProxyVia On
+
+      #Add ports you want to be able to connect to through your proxy here
+      AllowCONNECT 443 554
+      #563 1863 10000
+      #443   = SSL
+      #563   = TLS
+      #1863  = MSN Messenger
+      #10000 = Webmin
+
+      DocumentRoot /var/www/
+      &lt;directory&gt;
+              Options FollowSymLinks
+              AllowOverride None
+
+      ErrorLog /var/log/apache2/proxy-error.log
+      TransferLog /var/log/apache2/proxy-transfer.log
+      # Possible values include: debug, info, notice, warn, error, crit,
+      # alert, emerg.
+      LogLevel debug
+
+  &lt;/directory&gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Con lo que le estamos creando un nuevo sitio proxy que va a forwadear
+ el puerto 80, 443, 544, es importante que el virtual host *: 8888 sea
+igual al puerto que esta escuchando apache.&lt;/p&gt;
+
+&lt;p&gt;Configuramos el mod_proxy en el siguiente archivo:&lt;/p&gt;
+
+&lt;pre&gt;
+    sudo gedit /etc/apache2/mods-available/proxy.conf
+
+&lt;/pre&gt;
+
+&lt;p&gt;Que queda de esta forma&lt;/p&gt;
+
+&lt;pre&gt;
+&lt;ifmodule mod_proxy.c=""&gt;
+        #turning ProxyRequests on and allowing proxying from all may allow
+        #spammers to use your proxy to send email.
+
+        ProxyRequests On
+
+        &amp;lt;Proxy *:8888&amp;gt;
+                AddDefaultCharset off
+                Order deny,allow
+                Deny from all
+
+                Allow from 127.0.0.1
+
+        # Enable/disable the handling of HTTP/1.1 "Via:" headers.
+        # ("Full" adds the server version; "Block" removes all outgoing Via: headers)
+        # Set to one of: Off | On | Full | Block
+
+        ProxyVia On
+&lt;/ifmodule&gt;
+
+
+&lt;/pre&gt;
+
+&lt;p&gt;Con lo que configuramos que solo se pueda usar el proxy desde el localhost.
+Activamos el mod_proxy con esta linea.&lt;/p&gt;
+
+&lt;pre&gt;
+sudo a2enmod proxy proxy_connect proxy_html proxy_http proxy_ftp
+
+&lt;/pre&gt;
+
+&lt;p&gt;Activamos el sitio proxy&lt;/p&gt;
+
+&lt;pre&gt;
+sudo a2ensite proxy
+
+&lt;/pre&gt;
+
+&lt;p&gt;Y reinciamos el rervidor:&lt;/p&gt;
+
+&lt;pre&gt;
+ sudo /etc/init.d/apache2 restart
+
+&lt;/pre&gt;
+
+&lt;p&gt;Ya tenemos el servidor web listo.&lt;/p&gt;
+
+&lt;p&gt;Nota: si tenemos algun problema sera necesario modificar el site, y
+la configurcion, para esto es necesario deshabilitar tanto el site con
+el mod_proxy.
+Para deshabilitar el sitio proxy&lt;/p&gt;
+
+&lt;pre&gt;
+sudo a2dissite proxy
+
+&lt;/pre&gt;
+
+&lt;p&gt;para deshabilitar el mod_proxy:&lt;/p&gt;
+
+&lt;pre&gt;
+sudo a2dismod  proxy_connect proxy_html  proxy_ftp proxy
+
+&lt;/pre&gt;
+
+&lt;p&gt;Si se deshabilita el mod_proxy es necesario deshabilitar el  site
+proxy, por que este depende del mod_proxy, y el apache no arrancarria.&lt;/p&gt;
+
+&lt;p&gt;Para averiguar si funciona puedes hacer un telnet
+&amp;lt;pre name="code" class="ruby"&amp;gt;&lt;/p&gt;
+
+&lt;pre&gt;
+telnet localhost 8888
+
+&lt;/pre&gt;
+
+&lt;p&gt;Si no responde con codigo de error es por que esta bien, si ves simbolos raros esta bien.&lt;/p&gt;
+
+&lt;h2 id="instalar-ssh-server-para-que-te-puedas-conectar-desde-tu-computadora-del-trabajo-o-de-la-escuela"&gt;3. Instalar ssh server para que te puedas conectar desde tu computadora del trabajo o de la escuela.&lt;/h2&gt;
+
+&lt;pre&gt;
+sudo apt-get install openssh-server
+
+&lt;/pre&gt;
+
+&lt;p&gt;Como es un hecho que este bloqueado el puerto 22 que se utiliza por
+default para el protocolo ssh se debe de configurar para que use el
+puerto 443 usado generalmente para https.&lt;/p&gt;
+
+&lt;p&gt;Para hacer esto hay que modificar el siguiente archivo&lt;/p&gt;
+
+&lt;pre&gt;
+sudo gedit /etc/ssh/sshd_config
+
+&lt;/pre&gt;
+
+&lt;p&gt;Cambia esta linea&lt;/p&gt;
+
+&lt;pre&gt;
+  Port 22
+
+&lt;/pre&gt;
+
+&lt;p&gt;por&lt;/p&gt;
+
+&lt;pre&gt;
+  Port 443
+
+&lt;/pre&gt;
+
+&lt;p&gt;Ahora reinicia el servidor ssh.&lt;/p&gt;
+
+&lt;pre&gt;
+sudo /etc/init.d/ssh restart
+
+&lt;/pre&gt;
+
+&lt;p&gt;Prueba conectarte a tu maquina&lt;/p&gt;
+
+&lt;pre&gt;
+ssh 'user'@localhost -p 443
+
+&lt;/pre&gt;
+
+&lt;h2 id="configurar-dns-dinamico"&gt;4. Configurar DNS dinamico&lt;/h2&gt;
+
+&lt;p&gt;Si no cuentas con ip estatica, sera necesario usar servicio como &lt;a href="http://www.no-ip.com/"&gt;no-ip.org&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Para instalarlo dirigite a la siguiente pagina no-ip.org y create una
+ cuenta. Luego instala el cliente en tu maquina para que se actualize tu
+ ip automaticamente.&lt;/p&gt;
+
+&lt;pre&gt;
+sudo apt-get install no-ip
+
+&lt;/pre&gt;
+
+&lt;p&gt;Sigue la instrucciones, los parametros por default esta bien.&lt;/p&gt;
+
+&lt;p&gt;Ahora comprueba si esta funcionando correctamente.&lt;/p&gt;
+
+&lt;pre&gt;
+sudo noip2 -S
+
+&lt;/pre&gt;
+
+&lt;p&gt;Si el cliente de no-ip no esta corriendo utiliza.&lt;/p&gt;
+
+&lt;pre&gt;
+sudo noip2
+
+&lt;/pre&gt;
+
+&lt;h2 id="configurar-tu-maquina-local"&gt;5. Configurar tu maquina local&lt;/h2&gt;
+
+&lt;p&gt;Ahora configura la maquina desde donde te vas a conectar si utilizas linux.&lt;/p&gt;
+
+&lt;pre&gt;
+ ssh -L 8888:localhost:8888 user@server.at.home -p 443
+
+&lt;/pre&gt;
+
+&lt;p&gt;Con Windows utiliza &lt;a href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/download.html"&gt;putty&lt;/a&gt; o &lt;a href="http://www.extraputty.com/"&gt;extra-putty&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty1.png"&gt;&lt;img src="localhost_files/putty1-300x289.html" alt="" title="putty1" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://atoms.net84.net/wordpress/wp-content/uploads/2008/12/putty2.png"&gt;&lt;img src="localhost_files/putty2-300x288.html" alt="" title="putty2" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Necesitas configurar tu explorador para que use localhost:8080 como
+proxy, para todos los protocolos , si estas utilizando windows no
+recomiendo utilizar internet explorer ni chrome, utiliza firefox o
+opera, por que la configuracion del proxy es mas facil.&lt;/p&gt;
+
+&lt;p&gt;Mas informacion:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://famvdploeg.com/blog/2008/01/setting-up-an-apache2-proxy-server/"&gt;http://famvdploeg.com/blog/2008/01/setting-up-an-apache2-proxy-server/l&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Java Decompiler</title>
+    <link rel="alternate" href="/2008/11/11/java-decompiler.html"/>
+    <id>/2008/11/11/java-decompiler.html</id>
+    <published>2008-11-11T17:06:31Z</published>
+    <updated>2008-11-11T17:06:31Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Un decompilador es una herramienta muy util cuando necesitas modificar una clase y no cuentas con el codigo fuente.&lt;/p&gt;
+
+&lt;h6&gt;Decompiladores que conosco:&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://varaneckas.com/jad/" target="_blank"&gt;JAD&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://java.decompiler.free.fr/" target="_blank"&gt;Java Decompiler   &lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Estan esta disponible para windows, mac y linux.&lt;/p&gt;
+
+&lt;p&gt;Nota: Si no quieres que decompilen tus clases utiliza un obfuscador como ProGuard del post pasado.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Java Obfuscator</title>
+    <link rel="alternate" href="/2008/11/11/java-obfuscator.html"/>
+    <id>/2008/11/11/java-obfuscator.html</id>
+    <published>2008-11-11T16:39:35Z</published>
+    <updated>2008-11-11T16:39:35Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;ProGuard&lt;/strong&gt; es para hacerle uglify al codigo Java y que sea dificil de entender cuando este se decompile.&lt;/p&gt;
+
+&lt;p&gt;Descargalo desde aqui: &lt;a title="Proguard" href="http://proguard.sourceforge.net/" target="_blank"&gt;proguard&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Para ejecutarlo utiliza:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;java -jar proguardgui.jar&lt;/strong&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
