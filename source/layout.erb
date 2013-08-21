@@ -50,6 +50,7 @@
     <div class="row-fluid">
       <div class="span3">
         <div class="well sidebar-nav">
+          <div class="text-center">Techblog by atomsfat</div>
           <ul class="nav nav-list">
             <li class="nav-header">Articulos recientes</li>
             <% blog.articles[0...10].each do |article| %>
@@ -61,15 +62,13 @@
           <% end %>
           <li class="nav-header">Por año</li>
           <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-            <li><%= link_to year, blog_year_path(year) %> (<%= articles.size %>)</a></li>
+            <li><%= link_to "#{year} (#{articles.size})", blog_year_path(year) %> </a></li>
         <% end %>
       </ul>
     </div><!--/.well -->
   </div><!--/span-->
   <div class="span9">
-    <div class="row-fluid">
       <%= yield %>
-    </div><!--/row-->
   </div>
 </div>
 
