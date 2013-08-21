@@ -2,13 +2,6 @@
 pageable: true
 per_page: 10
 ---
-<% if paginate %>
-  <p>Page <%= page_number %> of <%= num_pages %></p>
-
-  <% if prev_page %>
-    <p><%= link_to 'Previous page', prev_page %></p>
-  <% end %>
-<% end %>
 
 <% page_articles.each_with_index do |article, i| %>
   <div class="row-fluid">
@@ -22,7 +15,15 @@ per_page: 10
 <% end %>
 
 <% if paginate %>
+  <p>Pagina <%= page_number %> de <%= num_pages %></p>
+
+  <% if prev_page %>
+    <p><%= link_to 'Pagina previa', prev_page %></p>
+  <% end %>
+<% end %>
+
+<% if paginate %>
   <% if next_page %>
-    <p><%= link_to 'Next page', next_page %></p>
+    <p><%= link_to 'Pagina siguiente', next_page %></p>
   <% end %>
 <% end %>
