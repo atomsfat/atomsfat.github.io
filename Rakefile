@@ -1,5 +1,4 @@
 require "middleman"
-require 'middleman-gh-pages'
 
 task :build do
   sh "middleman build --clean"
