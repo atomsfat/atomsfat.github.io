@@ -110,3 +110,5 @@ activate :deploy do |deploy|
   deploy.branch = "master"
 end
 
+activate :livereload
+
