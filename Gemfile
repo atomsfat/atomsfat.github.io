@@ -8,3 +8,5 @@ gem "middleman-livereload", "~> 3.1.0"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0.0"
+
+gem "middleman-gh-pages"
