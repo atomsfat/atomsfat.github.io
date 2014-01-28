@@ -96,23 +96,55 @@
     </div><!--/.well -->
   </div><!--/span-->
   <div class="span9">
-      <h1>Archivo de
-  
-    Dec 26 2008
-  
-</h1>
+      <h1 id="personalizar-marshaller-json-en-grails">Personalizar marshaller JSON en Grails</h1>
 
-  <p>Pagina 1 de 1</p>
-
-  
+<p>El personalizado de marshallers esta bastante documentado:</p>
 
 <ul>
-  
-    <li><a href="/2008/12/26/apache-webproxy-y-tunnelling.html">Apache WebProxy, y tunnelling</a> <span>Dec 26</span></li>
-  
+  <li><a title="title" href="http://kylewbanks.com/blog/Customizing-JSON-Grails-Object-Marshalling">Customizing JSON Output in Grails with JSON Object Marshaller</a>.</li>
 </ul>
 
-  
+<p>Básicamente consiste en los siguientes pasos:</p>
+
+<ol>
+  <li>Creamos un marshaller para la clase (mapa con los valores que deseamos regresar)</li>
+  <li>Se registra el marshaller en el <strong>BootStrap.groovy</strong>.</li>
+</ol>
+
+<p>Definir un marshaller para una clase en el <strong>BootStrap.groovy</strong>, no se esta tan mal, pero que si necesitamos definir todo el dominio
+de una aplicación.</p>
+
+<p>Una posible solución:</p>
+
+<p><a title="title" href="http://compiledammit.com/2012/08/16/custom-json-marshalling-in-grails-done-right/">Custom JSON Marshalling in Grails, Done “Right”</a> </p>
+
+<p>En este blog crean los marshaller en archivos separados, luego en un mapa definen los beans, y en con la ayuda del spring inyectan y 
+registran. </p>
+
+<p>Lo cual parece demasiado. </p>
+
+<p>Mi propuesta:</p>
+
+<ol>
+  <li>Engordar la clase de dominio para que contenga su propio marshaller.</li>
+  <li>Si la clase de dominio define un marshaller, que de manera automática se registre en <strong>BootStrap.groovy</strong>.</li>
+</ol>
+
+<p>Clase gorda con marshaller:</p>
+
+<script src="https://gist.github.com/atomsfat/8673440.js"></script>
+
+<p>Escaneo de las clases de dominio:</p>
+
+<script src="https://gist.github.com/atomsfat/8673594.js"></script>
+
+<p>Conclusiones:</p>
+
+<ul>
+  <li>Creo que esta solución es correcta por que no es necesario modificar el <strong>BootStrap.groovy</strong> cada vez que necesitamos un marshaller.</li>
+  <li>Si se requiere un cambio es muy fácil modificar la clase de dominio.</li>
+</ul>
+
 
   </div>
 </div>

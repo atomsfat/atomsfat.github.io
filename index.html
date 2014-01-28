@@ -58,6 +58,8 @@
           <ul class="nav nav-list">
             <li class="nav-header">Articulos recientes</li>
             
+              <li><a href="/2014/01/28/grails-marshalling.html">Grails JSON Marshalling bien hecho.</a></li>
+            
               <li><a href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html">Hacer un backup de mysql a Amazon S3</a></li>
             
               <li><a href="/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">Subir archivos a Amazon S3 con Groovy</a></li>
@@ -70,18 +72,22 @@
             
             <li class="nav-header">Etiquetas</li>
             
-              <li><a href="/tags/groovy.html">Groovy (2)</a> </a></li>
+              <li><a href="/tags/java.html">Java (2)</a> </a></li>
+          
+              <li><a href="/tags/groovy.html">Groovy (3)</a> </a></li>
           
               <li><a href="/tags/amazon.html">Amazon (2)</a> </a></li>
           
               <li><a href="/tags/s3.html">S3 (2)</a> </a></li>
           
-              <li><a href="/tags/java.html">Java (2)</a> </a></li>
-          
               <li><a href="/tags/mysql.html">MySql (1)</a> </a></li>
+          
+              <li><a href="/tags/grails.html">Grails (1)</a> </a></li>
           
           <li class="nav-header">Por año</li>
           
+            <li><a href="/2014.html">2014 (1)</a> </a></li>
+        
             <li><a href="/2013.html">2013 (2)</a> </a></li>
         
             <li><a href="/2008.html">2008 (3)</a> </a></li>
@@ -91,16 +97,74 @@
   </div><!--/span-->
   <div class="span9">
         <div class="row-fluid">
+  <h2><a href="/2014/01/28/grails-marshalling.html">Grails JSON Marshalling bien hecho.</a>
+  </h2><span>Jan 28, 2014</span>
+  <!-- use article.summary(250) if you have Nokogiri available to show just
+       the first 250 characters -->
+  <h1 id="personalizar-marshaller-json-en-grails">Personalizar marshaller JSON en Grails</h1>
+
+<p>El personalizado de marshallers esta bastante documentado:</p>
+
+<ul>
+  <li><a title="title" href="http://kylewbanks.com/blog/Customizing-JSON-Grails-Object-Marshalling">Customizing JSON Output in Grails with JSON Object Marshaller</a>.</li>
+</ul>
+
+<p>Básicamente consiste en los siguientes pasos:</p>
+
+<ol>
+  <li>Creamos un marshaller para la clase (mapa con los valores que deseamos regresar)</li>
+  <li>Se registra el marshaller en el <strong>BootStrap.groovy</strong>.</li>
+</ol>
+
+<p>Definir un marshaller para una clase en el <strong>BootStrap.groovy</strong>, no se esta tan mal, pero que si necesitamos definir todo el dominio
+de una aplicación.</p>
+
+<p>Una posible solución:</p>
+
+<p><a title="title" href="http://compiledammit.com/2012/08/16/custom-json-marshalling-in-grails-done-right/">Custom JSON Marshalling in Grails, Done “Right”</a> </p>
+
+<p>En este blog crean los marshaller en archivos separados, luego en un mapa definen los beans, y en con la ayuda del spring inyectan y 
+registran. </p>
+
+<p>Lo cual parece demasiado. </p>
+
+<p>Mi propuesta:</p>
+
+<ol>
+  <li>Engordar la clase de dominio para que contenga su propio marshaller.</li>
+  <li>Si la clase de dominio define un marshaller, que de manera automática se registre en <strong>BootStrap.groovy</strong>.</li>
+</ol>
+
+<p>Clase gorda con marshaller:</p>
+
+<script src="https://gist.github.com/atomsfat/8673440.js"></script>
+
+<p>Escaneo de las clases de dominio:</p>
+
+<script src="https://gist.github.com/atomsfat/8673594.js"></script>
+
+<p>Conclusiones:</p>
+
+<ul>
+  <li>Creo que esta solución es correcta por que no es necesario modificar el <strong>BootStrap.groovy</strong> cada vez que necesitamos un marshaller.</li>
+  <li>Si se requiere un cambio es muy fácil modificar la clase de dominio.</li>
+</ul>
+
+
+  </div><!--/row-->
+<hr>
+  <div class="row-fluid">
   <h2><a href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html">Hacer un backup de mysql a Amazon S3</a>
   </h2><span>Aug 21, 2013</span>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
   <h4 id="hacer-un-backup-de-una-base-de-datos-a-amazon-s3">Hacer un backup de una base de datos a Amazon S3</h4>
 
+<h4 id="lista-de-pasos">Lista de pasos:</h4>
 <ol>
   <li>Realizar un dump de la base</li>
   <li>Comprimir</li>
-  <li>Subir a <a href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html" title="title">S3</a></li>
+  <li>Subir a <a title="title" href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html">S3</a></li>
 </ol>
 
 <h4 id="dumping-compressing">Dumping, compressing</h4>
@@ -126,7 +190,7 @@
   </h2><span>Aug 21, 2013</span>
   <!-- use article.summary(250) if you have Nokogiri available to show just
        the first 250 characters -->
-  <p>Subir archivos a amazon S3, un script basado en uno de <a href="http://blog.thomnichols.org/2009/10/upload-to-s3-with-groovy" title="title">Thom Nichols</a>  y actualizado con una version mas reciente de <a href="http://jets3t.s3.amazonaws.com/downloads.html" title="title">JetS3t library</a>.</p>
+  <p>Subir archivos a amazon S3, un script basado en uno de <a title="title" href="http://blog.thomnichols.org/2009/10/upload-to-s3-with-groovy">Thom Nichols</a>  y actualizado con una version mas reciente de <a title="title" href="http://jets3t.s3.amazonaws.com/downloads.html">JetS3t library</a>.</p>
 
 <ol>
   <li>Crear bucket en S3 https://console.aws.amazon.com/s3/</li>
@@ -172,7 +236,7 @@ libres, anonimamente y sin restriciones.</p>
 
 <p>Una vez que este instalado apache ve al explorador e ingresa localhost en la barra de direcciones y da enter.
 Debes de ver algo como ** It works !!! ** o una pagina que confirme que apache esta funcionando.
-<img src="localhost_files/apache-runnig-300x188.html" alt="" title="apache-runnig" /></p>
+<img alt="" title="apache-runnig" src="/assets/img/localhost_files/apache-runnig-300x188.html" /></p>
 
 <h2 id="instalar-el-modulo-proxy-para-apache">2. Instalar el modulo proxy para apache.</h2>
 
@@ -414,9 +478,9 @@ sudo noip2
 
 <p>Configura putty de esta forma:</p>
 
-<p><img src="/assets/img/post/2008-12-26-putty1.png" alt="putty1" title="Putty 1 configuracion" /></p>
+<p><img alt="putty1" title="Putty 1 configuracion" src="/assets/img/post/2008-12-26-putty1.png" /></p>
 
-<p><img src="/assets/img/post/2008-12-26-putty2.png" alt="putty1" title="Putty 2 configuracion" /></p>
+<p><img alt="putty1" title="Putty 2 configuracion" src="/assets/img/post/2008-12-26-putty2.png" /></p>
 
 <p>Necesitas configurar tu explorador para que use localhost:8080 como
 proxy, para todos los protocolos , si estas utilizando windows no
@@ -482,7 +546,7 @@ opera, por que la configuracion del proxy es mas facil.</p>
 <hr>
 
 <footer>
-  <p>&copy; Tomás Salazar Leal 2013</p>
+  <p>&copy; Tomás Salazar Leal 2014</p>
 </footer>
 
     </div><!--/.fluid-container-->

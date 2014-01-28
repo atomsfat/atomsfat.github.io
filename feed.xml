@@ -5,10 +5,70 @@
   <id>http://atomsfat.github.io/</id>
   <link href="http://atomsfat.github.io/"/>
   <link href="http://atomsfat.github.io/feed.xml" rel="self"/>
-  <updated>2013-08-21T16:55:00Z</updated>
+  <updated>2014-01-28T17:53:00Z</updated>
   <author>
     <name>Atomsfat</name>
   </author>
+  <entry>
+    <title>Grails JSON Marshalling bien hecho.</title>
+    <link rel="alternate" href="/2014/01/28/grails-marshalling.html"/>
+    <id>/2014/01/28/grails-marshalling.html</id>
+    <published>2014-01-28T17:53:00Z</published>
+    <updated>2014-01-28T17:53:00Z</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h1 id="personalizar-marshaller-json-en-grails"&gt;Personalizar marshaller JSON en Grails&lt;/h1&gt;
+
+&lt;p&gt;El personalizado de marshallers esta bastante documentado:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a title="title" href="http://kylewbanks.com/blog/Customizing-JSON-Grails-Object-Marshalling"&gt;Customizing JSON Output in Grails with JSON Object Marshaller&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Básicamente consiste en los siguientes pasos:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Creamos un marshaller para la clase (mapa con los valores que deseamos regresar)&lt;/li&gt;
+  &lt;li&gt;Se registra el marshaller en el &lt;strong&gt;BootStrap.groovy&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Definir un marshaller para una clase en el &lt;strong&gt;BootStrap.groovy&lt;/strong&gt;, no se esta tan mal, pero que si necesitamos definir todo el dominio
+de una aplicación.&lt;/p&gt;
+
+&lt;p&gt;Una posible solución:&lt;/p&gt;
+
+&lt;p&gt;&lt;a title="title" href="http://compiledammit.com/2012/08/16/custom-json-marshalling-in-grails-done-right/"&gt;Custom JSON Marshalling in Grails, Done “Right”&lt;/a&gt; &lt;/p&gt;
+
+&lt;p&gt;En este blog crean los marshaller en archivos separados, luego en un mapa definen los beans, y en con la ayuda del spring inyectan y 
+registran. &lt;/p&gt;
+
+&lt;p&gt;Lo cual parece demasiado. &lt;/p&gt;
+
+&lt;p&gt;Mi propuesta:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Engordar la clase de dominio para que contenga su propio marshaller.&lt;/li&gt;
+  &lt;li&gt;Si la clase de dominio define un marshaller, que de manera automática se registre en &lt;strong&gt;BootStrap.groovy&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Clase gorda con marshaller:&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/atomsfat/8673440.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Escaneo de las clases de dominio:&lt;/p&gt;
+
+&lt;script src="https://gist.github.com/atomsfat/8673594.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;Conclusiones:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Creo que esta solución es correcta por que no es necesario modificar el &lt;strong&gt;BootStrap.groovy&lt;/strong&gt; cada vez que necesitamos un marshaller.&lt;/li&gt;
+  &lt;li&gt;Si se requiere un cambio es muy fácil modificar la clase de dominio.&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+  </entry>
   <entry>
     <title>Hacer un backup de mysql a Amazon S3</title>
     <link rel="alternate" href="/2013/08/21/hacer-un-backup-de-mysql-a-amazon-s3.html"/>
@@ -20,10 +80,11 @@
     </author>
     <content type="html">&lt;h4 id="hacer-un-backup-de-una-base-de-datos-a-amazon-s3"&gt;Hacer un backup de una base de datos a Amazon S3&lt;/h4&gt;
 
+&lt;h4 id="lista-de-pasos"&gt;Lista de pasos:&lt;/h4&gt;
 &lt;ol&gt;
   &lt;li&gt;Realizar un dump de la base&lt;/li&gt;
   &lt;li&gt;Comprimir&lt;/li&gt;
-  &lt;li&gt;Subir a &lt;a href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html" title="title"&gt;S3&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Subir a &lt;a title="title" href="http://0.0.0.0:4567/2013/08/21/subir-archivos-a-amazon-s3-con-groovy.html"&gt;S3&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h4 id="dumping-compressing"&gt;Dumping, compressing&lt;/h4&gt;
@@ -52,7 +113,7 @@
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;Subir archivos a amazon S3, un script basado en uno de &lt;a href="http://blog.thomnichols.org/2009/10/upload-to-s3-with-groovy" title="title"&gt;Thom Nichols&lt;/a&gt;  y actualizado con una version mas reciente de &lt;a href="http://jets3t.s3.amazonaws.com/downloads.html" title="title"&gt;JetS3t library&lt;/a&gt;.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Subir archivos a amazon S3, un script basado en uno de &lt;a title="title" href="http://blog.thomnichols.org/2009/10/upload-to-s3-with-groovy"&gt;Thom Nichols&lt;/a&gt;  y actualizado con una version mas reciente de &lt;a title="title" href="http://jets3t.s3.amazonaws.com/downloads.html"&gt;JetS3t library&lt;/a&gt;.&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Crear bucket en S3 https://console.aws.amazon.com/s3/&lt;/li&gt;
@@ -101,7 +162,7 @@ libres, anonimamente y sin restriciones.&lt;/p&gt;
 
 &lt;p&gt;Una vez que este instalado apache ve al explorador e ingresa localhost en la barra de direcciones y da enter.
 Debes de ver algo como ** It works !!! ** o una pagina que confirme que apache esta funcionando.
-&lt;img src="localhost_files/apache-runnig-300x188.html" alt="" title="apache-runnig" /&gt;&lt;/p&gt;
+&lt;img alt="" title="apache-runnig" src="/assets/img/localhost_files/apache-runnig-300x188.html" /&gt;&lt;/p&gt;
 
 &lt;h2 id="instalar-el-modulo-proxy-para-apache"&gt;2. Instalar el modulo proxy para apache.&lt;/h2&gt;
 
@@ -343,9 +404,9 @@ sudo noip2
 
 &lt;p&gt;Configura putty de esta forma:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/assets/img/post/2008-12-26-putty1.png" alt="putty1" title="Putty 1 configuracion" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="putty1" title="Putty 1 configuracion" src="/assets/img/post/2008-12-26-putty1.png" /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/assets/img/post/2008-12-26-putty2.png" alt="putty1" title="Putty 2 configuracion" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="putty1" title="Putty 2 configuracion" src="/assets/img/post/2008-12-26-putty2.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Necesitas configurar tu explorador para que use localhost:8080 como
 proxy, para todos los protocolos , si estas utilizando windows no
