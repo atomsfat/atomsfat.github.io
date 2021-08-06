@@ -6,7 +6,7 @@ title: Home
 
 Powered by [vuepress](https://vuepress.vuejs.org/)
 
-
+[Markdown Vue guide](/guide/)
 
 
 ## References

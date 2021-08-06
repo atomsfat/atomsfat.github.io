@@ -45,8 +45,7 @@ Hello World! :fas-flag:
 
 Markdownish syntax for generating flowcharts, sequence diagrams, class diagrams, gantt charts and git graphs.
 
-```js
-<mermaid>
+``` mermaid
 stateDiagram
   [*] --> Still
   Still --> [*]
@@ -54,10 +53,9 @@ stateDiagram
   Moving --> Still
   Moving --> Crash
   Crash --> [*]
-</mermaid>
 ```
 
-<mermaid>
+```mermaid
 stateDiagram
   [*] --> Still
   Still --> [*]
@@ -65,30 +63,27 @@ stateDiagram
   Moving --> Still
   Moving --> Crash
   Crash --> [*]
-</mermaid>
-
-```js
-<mermaid>
-graph TD
-A[Christmas] -->|Get money| B(Go shopping)
-B --> C{Let me think}
-C -->|One| D[Laptop]
-C -->|Two| E[iPhone]
-C -->|Three| F[fa:fa-car Car]
-</mermaid>
-
 ```
 
-<mermaid>
+```mermaid
 graph TD
 A[Christmas] -->|Get money| B(Go shopping)
 B --> C{Let me think}
 C -->|One| D[Laptop]
 C -->|Two| E[iPhone]
 C -->|Three| F[fa:fa-car Car]
-</mermaid>
+```
 
-```js
+```mermaid
+graph TD
+A[Christmas] -->|Get money| B(Go shopping)
+B --> C{Let me think}
+C -->|One| D[Laptop]
+C -->|Two| E[iPhone]
+C -->|Three| F[fa:fa-car Car]
+```
+
+```mermaid
 gantt
     title A Gantt Diagram
     dateFormat  YYYY-MM-DD
@@ -98,9 +93,9 @@ gantt
     section Another
     Task in sec      :2014-01-12  , 12d
     another task      : 24d
-</mermaid>
 ```
-<mermaid>
+
+```mermaid
 gantt
     title A Gantt Diagram
     dateFormat  YYYY-MM-DD
@@ -110,10 +105,9 @@ gantt
     section Another
     Task in sec      :2014-01-12  , 12d
     another task      : 24d
-</mermaid>
+```
 
-```js
-<mermaid>
+```mermaid
 classDiagram
 Class01 <|-- AveryLongClass : Cool
 Class03 *-- Class04
@@ -128,9 +122,8 @@ Class01 : size()
 Class01 : int chimp
 Class01 : int gorilla
 Class08 <--> C2: Cool label
-</mermaid>
 ```
-<mermaid>
+```mermaid
 classDiagram
 Class01 <|-- AveryLongClass : Cool
 Class03 *-- Class04
@@ -145,23 +138,23 @@ Class01 : size()
 Class01 : int chimp
 Class01 : int gorilla
 Class08 <--> C2: Cool label
-</mermaid>
-
-```js
-graph LR
-  A[Square Rect] -- Link text --> B((Circle))
-  A --> C(Round Rect)
-  B --> D{Rhombus}
-  C --> D
-</mermaid>
 ```
-<mermaid>
+
+```mermaid
 graph LR
   A[Square Rect] -- Link text --> B((Circle))
   A --> C(Round Rect)
   B --> D{Rhombus}
   C --> D
-</mermaid>
+
+```
+```mermaid
+graph LR
+  A[Square Rect] -- Link text --> B((Circle))
+  A --> C(Round Rect)
+  B --> D{Rhombus}
+  C --> D
+```
 
 ---
 
