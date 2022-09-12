@@ -140,20 +140,3 @@ tmux send -X search-forward "foo"
 
 Training Kubernetes
 
----
-
-ETCS Utiliza un algoritmo llamado raft
-
-Recomendaciones
-
-Minikube
-
-Kubeadm
-
-coreOs Tectonic
-
-- onPRmeise, AWS
-
-Kops
-
-- AWS
