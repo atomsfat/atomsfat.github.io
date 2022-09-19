@@ -7,3 +7,5 @@ public/*
 *.iml
 docs/.vuepress/.cache/
 docs/.vuepress/.temp/
+./idea
+.idea/
