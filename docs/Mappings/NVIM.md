@@ -116,6 +116,7 @@
 | U               | text upper case
 
 ## Diff
+
 | Mapping               | Details
 | --------------------- | -------------------------------------------------
 | nvim -d file1 file2   | Start diff file
@@ -129,20 +130,22 @@
 | :Gwrite
 
 ## Git
+
 | Mapping               | Details
 | --------------------- | -------------------------------------------------
 | :GV                   |  Commit Browser
 | `<leader>g`             | Denite gitstatus          (Denite)
 
 ## Cut and paste
+
 | Mapping         | Details
   | --------------- | -------------------------------------------------
 | dw              | cut word
 | dt]             | delete util ]
 | diw             | delete inside word
 
-
 ## Editing
+
 | Mapping         | Details
   | --------------- | -------------------------------------------------
 | r               | replace single character
@@ -156,6 +159,7 @@
 | caw             |  change all word
 
 ## Marking
+
 | Mapping         | Details
 | --------------- | -------------------------------------------------
 | v               | visual mode
@@ -192,6 +196,7 @@
 | mc              | Clear bookmark       (vim-bookmark)
 
 ## Marks
+
 | Mapping       | Details
 | ------------- | -------------------------------------------------
 | `<c-i>`         | Jump newer
@@ -200,8 +205,8 @@
 | aw            | select a current word plus one
 | iW            |
 
-
 ## Working with files
+
 | Mapping         | Details
 | --------------- | -------------------------------------------------
 | :e              | edit file in new buffer
@@ -216,6 +221,7 @@
 | `<leader>tab`     | Jump betweeb buffer
 
 ## Registers
+
 | Mapping       | Details
 | --------------- | -------------------------------------------------
 | :reg          | Display registers
@@ -228,8 +234,8 @@
 | *"p           | Paste clipboard
 | `<C-r>0`        | Paste register 0, works in command mode!
 
-
 ## Folding
+
 | Mapping     | Details
 | --------------- | -------------------------------------------------
 | zo          | open
@@ -241,32 +247,37 @@
 |:fold        | select block, then
 
 ## :terminal
+
 | Mapping         | Details
   | --------------- | -------------------------------------------------
 | ctrl+q          | Exit terminal
 | `<leader>t`       | :term
 
-
 ## Source current file
+
   ```php
   :so %
   ```
 
 ## Emmet
+
 | Mapping         | Details
 | --------------- | -------------------------------------------------
 | `<C-x>,`          | Emmet leader, generate html
 
   ```html
   html:5_
-  h1{hello}
+h1{hello}
   ```
 
 **Edit stream**
+
   ```php
   find . | vim -
   ```
+
 ## Search
+
 | Mapping         | Details
 | --------------- | -------------------------------------------------
 | `<leader>f`        | :flyGrep                        (FlyGrep)
@@ -287,7 +298,6 @@
 | ]s:                        | go to next spell error
 | z=                         | A list of candidate words will be shown
 | :set syntax=php            | Set syntax for buffer
-
 
 ## Easy motion
 
@@ -313,12 +323,13 @@
 | See             |f| and  |F|.
 
 ## CoC (Conquer of Completion)
-- Run `:messages` to get echoed messages in vim.
-- Text `JDT.LS` would be in your statusline when you have statusline integration with coc.nvim.
-- Enable verbose trace for jdt.ls by add `"java.trace.server": "verbose"` in your settings file, then check output by `:CocCommand workspace.showOutput java`
-- Run `:CocCommand java.open.serverLog` to open log of jdt.ls.
-- Try `:CocCommand java.clean.workspace` to clean workspace cache.
 
+- Run `:messages` to get echoed messages in vim.
+- Text `JDT.LS` would be in your statusline when you have statusline integration with coc.nvim.
+- Enable verbose trace for jdt.ls by add `"java.trace.server": "verbose"` in your settings file, then check output
+  by `:CocCommand workspace.showOutput java`
+- Run `:CocCommand java.open.serverLog` to open log of jdt.ls.
+- Try `:CocCommand java.clean.workspace` to clean workspace cache.
 
 ## Misc tricks
 

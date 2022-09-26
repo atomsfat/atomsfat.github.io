@@ -4,6 +4,4 @@
 
 [NVIM]( /Mappings/NVIM)
 
-[TextMate](/Mappings/TextMate)
-
 [Sublime shortcuts](/Mappings/Sublime)

@@ -1,11 +1,8 @@
 # Intellij
 
-
 ## Basic shortcuts
 
-
-
-| Mapping                       | Details                                   
+| Mapping                       | Details
 | ----------------------------- | ----------- |
 | Ctrl + Alt + S                |
 | Alt + Shift + Mouse Click     | Add/remove a selection
@@ -31,8 +28,11 @@
 | cmd_alt_>                     | Navigate forth
 
 ## IdeaVim Mappings
+
 ### Search
 
 ---
+
 ##### References
+
 [Customising IdeaVim](https://dewaka.com/blog/2019/07/27/customising-ideavim/)

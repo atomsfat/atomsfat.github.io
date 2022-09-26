@@ -1,3 +1,3 @@
 # Sublime
 
-ctrl + d Select next ocurrences
+ctrl + d Select next occurrences
